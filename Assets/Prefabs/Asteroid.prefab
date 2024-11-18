@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4287225316533537106}
+  - component: {fileID: 1012770220015118248}
   - component: {fileID: 1345568501201037564}
   - component: {fileID: 8570689051283747421}
   - component: {fileID: 7323655936418898221}
-  - component: {fileID: 7666313471910359152}
   - component: {fileID: 5460409855246239142}
   m_Layer: 3
   m_Name: Asteroid
@@ -31,11 +31,23 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1012770220015118248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724245038805367495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb8edb3222f346e78d595f283242deb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &1345568501201037564
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -113,21 +125,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!114 &7666313471910359152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724245038805367495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62039367e76184ca694d2f596db26c19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnTime: 0.1
-  mediumAsteroid: {fileID: 2455176704722240742, guid: 951128025ead647aa98b2cdb91d82bf2, type: 3}
-  smallAsteroid: {fileID: 4755588613470242336, guid: 3a0c526212c17429f88c8b48fcf02bca, type: 3}
 --- !u!135 &5460409855246239142
 SphereCollider:
   m_ObjectHideFlags: 0
