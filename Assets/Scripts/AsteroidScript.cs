@@ -16,6 +16,7 @@ public class AsteroidScript : MonoBehaviour
 
     private CameraView _camView;
     private MeshRenderer _meshRenderer;
+    private Rigidbody _rb;
     private float _outOfBoundsTimer;
     private float _botSpawnTimer;
     private int _mass;
@@ -25,6 +26,7 @@ public class AsteroidScript : MonoBehaviour
     {
         _camView = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraView>();
         _meshRenderer = GetComponent<MeshRenderer>();
+        _rb = GetComponent<Rigidbody>();
         _mass = initialMass;
         if (infected)
         {
@@ -75,8 +77,9 @@ public class AsteroidScript : MonoBehaviour
         Vector2 relSpawnPoint = randomCircle * spawnRadius;
         Vector3 spawnPoint = transform.position + new Vector3(relSpawnPoint.x, relSpawnPoint.y, 0f);
         GameObject newBot = Instantiate(botPrefab, spawnPoint, Quaternion.identity); 
-        // Vector3 orientation = randomCircle * Vector3.up;
-        // newBot.transform.rotation = Quaternion.Euler(orientation);
+        float angle = Mathf.Atan2(randomCircle.y, randomCircle.x) * Mathf.Rad2Deg;
+        newBot.transform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
+        newBot.GetComponent<Rigidbody>().velocity = _rb.velocity;
     }
 
     private void CheckOutOfBounds()

@@ -48,10 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62904f6edc8e8463d8464a70a495490e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 10
-  maxTurnForce: 10
-  minTurnForce: -10
-  turnTime: 0.5
+  thrust: 5
+  minTurnSpeed: 50
+  maxTurnSpeed: 100
+  turnInterval: 0.2
+  turnTime: 1
 --- !u!33 &8850816878445185077
 MeshFilter:
   m_ObjectHideFlags: 0
