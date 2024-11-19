@@ -53,6 +53,8 @@ MonoBehaviour:
   maxTurnSpeed: 100
   turnInterval: 0.2
   turnTime: 1
+  minLifetime: 10
+  maxLifetime: 20
 --- !u!33 &8850816878445185077
 MeshFilter:
   m_ObjectHideFlags: 0

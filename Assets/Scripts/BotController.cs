@@ -8,20 +8,31 @@ public class BotController : MonoBehaviour
     [SerializeField] private float maxTurnSpeed;
     [SerializeField] private float turnInterval;
     [SerializeField] private float turnTime;
+    [SerializeField] private float minLifetime;
+    [SerializeField] private float maxLifetime;
     // @formatter:on
 
     private Rigidbody _rb;
     private float _timer;
     private bool _turning;
+    private float _lifeTimer;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
 
+    void Start()
+    {
+        _lifeTimer = Random.Range(minLifetime, maxLifetime);
+    }
+
     private void FixedUpdate()
     {
         _timer += Time.fixedDeltaTime;
+        _lifeTimer -= Time.fixedDeltaTime;
+
+        if (_lifeTimer <= 0) Destroy(gameObject);
 
         // always apply thrust
         _rb.AddForce(thrust * transform.up);

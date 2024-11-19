@@ -67,6 +67,8 @@ public class AsteroidScript : MonoBehaviour
         _bots += Mathf.FloorToInt(_mass) - Mathf.FloorToInt(newMass);
         _mass = newMass;
         Debug.Log($"mass: {_mass}, bots: {_bots}");
+        
+        // TODO: shoot off bots while shrinking
 
         // if out of mass, fire all bots and delete
         if (_mass <= 0f)
