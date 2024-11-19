@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8177579248421445641
+--- !u!1 &3988746613422245293
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,65 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4331438867362790782}
-  - component: {fileID: 310545513812179599}
-  - component: {fileID: 8850816878445185077}
-  - component: {fileID: 8495724290280075957}
-  - component: {fileID: 1628258358748077791}
-  - component: {fileID: 8149439045335139246}
+  - component: {fileID: 3211334648584253886}
+  - component: {fileID: 6197099565725031544}
+  - component: {fileID: 531912948138554385}
+  - component: {fileID: 5134625619080816903}
+  - component: {fileID: 5000575945455641557}
+  - component: {fileID: 5539768647817168945}
   m_Layer: 0
-  m_Name: Bot
-  m_TagString: Bot
+  m_Name: Ship
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4331438867362790782
+--- !u!4 &3211334648584253886
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177579248421445641}
+  m_GameObject: {fileID: 3988746613422245293}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 10.78, y: 10.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
---- !u!114 &310545513812179599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177579248421445641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62904f6edc8e8463d8464a70a495490e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 10
-  maxTurnForce: 10
-  minTurnForce: -10
-  turnTime: 0.5
---- !u!33 &8850816878445185077
+--- !u!33 &6197099565725031544
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177579248421445641}
+  m_GameObject: {fileID: 3988746613422245293}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8495724290280075957
+--- !u!23 &531912948138554385
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177579248421445641}
+  m_GameObject: {fileID: 3988746613422245293}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -102,13 +86,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1628258358748077791
+--- !u!136 &5134625619080816903
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177579248421445641}
+  m_GameObject: {fileID: 3988746613422245293}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -117,7 +101,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -125,13 +109,13 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &8149439045335139246
+--- !u!54 &5000575945455641557
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177579248421445641}
+  m_GameObject: {fileID: 3988746613422245293}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 1
@@ -152,3 +136,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 56
   m_CollisionDetection: 0
+--- !u!114 &5539768647817168945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988746613422245293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5067e5bb93ab645eb9285f5c27cad6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserPrefab: {fileID: 6160813336778685353, guid: 650d8e867a2bb4aa7972cf22df0bc31b, type: 3}
+  shipRotationSpeed: 300
+  shipThrust: 1000
+  shipBrakeDrag: 3
+  laserSpeed: 40

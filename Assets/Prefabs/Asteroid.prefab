@@ -48,6 +48,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb8edb3222f346e78d595f283242deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  botPrefab: {fileID: 8177579248421445641, guid: eb59a47882ec34045955c318a96e0422, type: 3}
+  infectedMaterial: {fileID: 2100000, guid: 7a0347765feb9484bbba89ff8025974e, type: 2}
+  infected: 0
+  initialMass: 0
+  initialBots: 0
+  botSpawnTime: 1
+  botSpawnRadius: 1
 --- !u!33 &1345568501201037564
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -140,7 +147,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

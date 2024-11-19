@@ -1,34 +1,51 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidScript : MonoBehaviour
 {
     // @formatter:off
+    [SerializeField] private GameObject botPrefab;
+    [SerializeField] private Material infectedMaterial;
     [SerializeField] private bool infected;
     [SerializeField] private int initialMass;
-    [SerializeField] private int initialBots;
+    [SerializeField] private int initialBots;  // only for initial asteroid
+    [SerializeField] private float botSpawnTime;
+    [SerializeField] private float botSpawnRadius;
     // @formatter:on
 
     private const float OutOfBoundsCheckDelay = 0.5f;
 
     private CameraView _camView;
+    private MeshRenderer _meshRenderer;
     private float _outOfBoundsTimer;
+    private float _botSpawnTimer;
     private int _mass;
     private int _bots;
 
     private void Awake()
     {
         _camView = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraView>();
+        _meshRenderer = GetComponent<MeshRenderer>();
         _mass = initialMass;
-        if (infected) _bots = initialBots;
+        if (infected)
+        {
+            _bots = initialBots;
+            _meshRenderer.material = infectedMaterial;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // TODO: when bot collides, enter asteroid
-        throw new NotImplementedException();
+        // when colliding with a bot, enter it into asteroid
+        if (other.CompareTag("Bot"))
+        {
+            if (!infected)
+            {
+                infected = true;
+                _meshRenderer.material = infectedMaterial;
+            }
+            _bots += 1;
+            Destroy(other.gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -42,7 +59,24 @@ public class AsteroidScript : MonoBehaviour
         // TODO
         // convert mass into bots
         // chance to spawn a bot outside the asteroid (based on number of bots)
+        _botSpawnTimer += Time.fixedDeltaTime;
+        if (_botSpawnTimer >= botSpawnTime)
+        {
+            _botSpawnTimer = 0;
+            SpawnBot();
+        }
         // update asteroid size based on mass
+    }
+
+    private void SpawnBot()
+    {
+        float spawnRadius = transform.localScale.x + botSpawnRadius;
+        Vector2 randomCircle = Random.insideUnitCircle;
+        Vector2 relSpawnPoint = randomCircle * spawnRadius;
+        Vector3 spawnPoint = transform.position + new Vector3(relSpawnPoint.x, relSpawnPoint.y, 0f);
+        GameObject newBot = Instantiate(botPrefab, spawnPoint, Quaternion.identity); 
+        // Vector3 orientation = randomCircle * Vector3.up;
+        // newBot.transform.rotation = Quaternion.Euler(orientation);
     }
 
     private void CheckOutOfBounds()

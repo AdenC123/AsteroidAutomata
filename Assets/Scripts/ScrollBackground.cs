@@ -1,18 +1,20 @@
 using UnityEngine;
 
 public class ScrollBackground : MonoBehaviour {
-    public Transform ship;
-    public float scrollSpeed = 0.1f;
+
+    [SerializeField] private float scrollSpeed = 0.1f;
 
     private Material _mat;
+    private Transform _ship;
 
-    void Start() {
+    void Awake() {
         _mat = GetComponent<MeshRenderer>().material;
+        _ship = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update() {
-        float xoffset = ship.position.x * scrollSpeed / transform.localScale.x;
-        float yoffset = ship.position.y * scrollSpeed / transform.localScale.y;
+        float xoffset = _ship.position.x * scrollSpeed / transform.localScale.x;
+        float yoffset = _ship.position.y * scrollSpeed / transform.localScale.y;
         _mat.mainTextureOffset = new Vector2(xoffset, yoffset);
     }
 }
