@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 724245038805367495, guid: d7c049d8ffb0b416eb4fd3058776bc8d, type: 3}
       propertyPath: m_Name
-      value: Asteroid Variant
+      value: Infected Asteroid
       objectReference: {fileID: 0}
     - target: {fileID: 1012770220015118248, guid: d7c049d8ffb0b416eb4fd3058776bc8d, type: 3}
       propertyPath: infected
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287225316533537106, guid: d7c049d8ffb0b416eb4fd3058776bc8d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4287225316533537106, guid: d7c049d8ffb0b416eb4fd3058776bc8d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287225316533537106, guid: d7c049d8ffb0b416eb4fd3058776bc8d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4287225316533537106, guid: d7c049d8ffb0b416eb4fd3058776bc8d, type: 3}
       propertyPath: m_LocalRotation.w

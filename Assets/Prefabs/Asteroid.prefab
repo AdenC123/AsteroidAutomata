@@ -51,10 +51,10 @@ MonoBehaviour:
   botPrefab: {fileID: 8177579248421445641, guid: eb59a47882ec34045955c318a96e0422, type: 3}
   infectedMaterial: {fileID: 2100000, guid: b705b36c0a031c74bb375ee73b5ecce3, type: 2}
   infected: 0
-  initialMass: 0
-  initialBots: 0
-  botSpawnTime: 1
-  botSpawnRadius: 1
+  initialMass: 30
+  initialBots: 5
+  botSpawnRadius: 5
+  botConversionRate: 0.3
 --- !u!33 &1345568501201037564
 MeshFilter:
   m_ObjectHideFlags: 0

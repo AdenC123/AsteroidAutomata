@@ -6,10 +6,10 @@ public class AsteroidScript : MonoBehaviour
     [SerializeField] private GameObject botPrefab;
     [SerializeField] private Material infectedMaterial;
     [SerializeField] private bool infected;
-    [SerializeField] private int initialMass;
+    [SerializeField] private float initialMass;
     [SerializeField] private int initialBots;  // only for initial asteroid
-    [SerializeField] private float botSpawnTime;
     [SerializeField] private float botSpawnRadius;
+    [SerializeField] private float botConversionRate;
     // @formatter:on
 
     private const float OutOfBoundsCheckDelay = 0.5f;
@@ -19,8 +19,9 @@ public class AsteroidScript : MonoBehaviour
     private Rigidbody _rb;
     private float _outOfBoundsTimer;
     private float _botSpawnTimer;
-    private int _mass;
+    private float _mass;
     private int _bots;
+    private float _initialScale;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class AsteroidScript : MonoBehaviour
         _meshRenderer = GetComponent<MeshRenderer>();
         _rb = GetComponent<Rigidbody>();
         _mass = initialMass;
+        _initialScale = transform.localScale.x;
         if (infected)
         {
             _bots = initialBots;
@@ -37,6 +39,7 @@ public class AsteroidScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Bot entered");
         // when colliding with a bot, enter it into asteroid
         if (other.CompareTag("Bot"))
         {
@@ -45,6 +48,7 @@ public class AsteroidScript : MonoBehaviour
                 infected = true;
                 _meshRenderer.material = infectedMaterial;
             }
+
             _bots += 1;
             Destroy(other.gameObject);
         }
@@ -58,25 +62,38 @@ public class AsteroidScript : MonoBehaviour
 
     private void UpdateInfection()
     {
-        // TODO
-        // convert mass into bots
-        // chance to spawn a bot outside the asteroid (based on number of bots)
-        _botSpawnTimer += Time.fixedDeltaTime;
-        if (_botSpawnTimer >= botSpawnTime)
+        // convert mass into bots (based on number of bots)
+        float newMass = _mass - _bots * botConversionRate * Time.fixedDeltaTime;
+        _bots += Mathf.FloorToInt(_mass) - Mathf.FloorToInt(newMass);
+        _mass = newMass;
+        Debug.Log($"mass: {_mass}, bots: {_bots}");
+
+        // if out of mass, fire all bots and delete
+        if (_mass <= 0f)
         {
-            _botSpawnTimer = 0;
-            SpawnBot();
+            for (int i = 0; i < _bots; i++) TrySpawnBot();
+            Destroy(gameObject);
         }
+
         // update asteroid size based on mass
+        float newScale = _mass / initialMass * _initialScale;
+        transform.localScale = new Vector3(newScale, newScale, newScale);
     }
 
-    private void SpawnBot()
+    private void TrySpawnBot()
     {
-        float spawnRadius = transform.localScale.x + botSpawnRadius;
+        Debug.Log($"Trying to spawn bot {_bots}");
+        // try to remove a bot
+        if (_bots <= 0) return;
+        _bots--;
+        
+        // spawn bot at edge of sphere
+        float scale = Mathf.Abs(transform.localScale.x);
+        float spawnRadius = scale + botSpawnRadius;
         Vector2 randomCircle = Random.insideUnitCircle;
         Vector2 relSpawnPoint = randomCircle * spawnRadius;
         Vector3 spawnPoint = transform.position + new Vector3(relSpawnPoint.x, relSpawnPoint.y, 0f);
-        GameObject newBot = Instantiate(botPrefab, spawnPoint, Quaternion.identity); 
+        GameObject newBot = Instantiate(botPrefab, spawnPoint, Quaternion.identity);
         float angle = Mathf.Atan2(randomCircle.y, randomCircle.x) * Mathf.Rad2Deg;
         newBot.transform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
         newBot.GetComponent<Rigidbody>().velocity = _rb.velocity;
