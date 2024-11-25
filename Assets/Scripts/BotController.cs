@@ -39,12 +39,14 @@ public class BotController : MonoBehaviour
 
         if (_turning && _timer >= turnTime)
         {
+            // time up, stop turning
             _timer = 0f;
             _turning = false;
             _rb.angularVelocity = Vector3.zero;
         }
         else if (!_turning && _timer >= turnInterval)
         {
+            // turn interval elapsed, start turning again
             _timer = 0f;
             _turning = true;
             // pick new random turn velocity

@@ -39,7 +39,6 @@ public class AsteroidScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Bot entered");
         // when colliding with a bot, enter it into asteroid
         if (other.CompareTag("Bot"))
         {
@@ -66,7 +65,6 @@ public class AsteroidScript : MonoBehaviour
         float newMass = _mass - _bots * botConversionRate * Time.fixedDeltaTime;
         _bots += Mathf.FloorToInt(_mass) - Mathf.FloorToInt(newMass);
         _mass = newMass;
-        Debug.Log($"mass: {_mass}, bots: {_bots}");
         
         // TODO: shoot off bots while shrinking
 
@@ -84,7 +82,6 @@ public class AsteroidScript : MonoBehaviour
 
     private void TrySpawnBot()
     {
-        Debug.Log($"Trying to spawn bot {_bots}");
         // try to remove a bot
         if (_bots <= 0) return;
         _bots--;
